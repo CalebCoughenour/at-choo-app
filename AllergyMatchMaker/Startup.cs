@@ -10,7 +10,7 @@ using System.Reflection;
 using System.IO;
 using Microsoft.OpenApi.Models;
 
-namespace AllergyMatchMaker
+namespace AllergyMatchMaker.Solution
 {
     public class Startup
     {
@@ -18,14 +18,13 @@ namespace AllergyMatchMaker
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
-          services.AddDbContext<AllergyInfoContext>(opt =>
+          services.AddDbContext<AllergyMatchMakerContext>(opt =>
               opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
           services.AddControllers();
           //Swagger
